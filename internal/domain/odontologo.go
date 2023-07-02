@@ -1,8 +1,17 @@
 package domain
 
 type Odontologo struct {
-	Id          int     `json:"id"`
-	Name        string  `json:"name" binding:"required"`
-	Apellido    string     `json:"quantity" binding:"required"`
-	Matricula    int     `json:"quantity" binding:"required"`
+	ID         int    `json:"id"`
+	Name       string `json:"name"`
+	Surname    string `json:"surname"`
+	Enrollment string `json:"enrollment"`
+}
+
+func NewOdontologo(n string, sn string, e string) *Odontologo {
+	return &Odontologo{
+		ID:         0,
+		Name:       n,
+		Surname:    sn,
+		Enrollment: e,
+	}
 }

@@ -1,10 +1,21 @@
 package domain
 
 type Paciente struct {
-	Id          int     `json:"id"`
-	Nombre        string  `json:"name" binding:"required"`
-	Apellido    int     `json:"quantity" binding:"required"`
-	Domicilio    int     `json:"quantity" binding:"required"`
-	Dni   int  `json:"code_value" binding:"required"`
-	FechaDeAlta string    `json:"is_published"`
+	ID            int    `json:"id"`
+	Name          string `json:"name"`
+	Surname       string `json:"surname"`
+	Address       string `json:"address"`
+	DNI           string `json:"DNI"`
+	TurnoFecha string `json:"discharge_date"`
+}
+
+func NewPaciente(name string, surname string, address string, dni string, fechaTurno string) *Paciente {
+	return &Paciente{
+		ID:            0,
+		Name:          name,
+		Surname:       surname,
+		Address:       address,
+		DNI:           dni,
+		TurnoFecha: fechaTurno,
+	}
 }

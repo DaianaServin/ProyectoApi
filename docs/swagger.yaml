@@ -1,0 +1,592 @@
+definitions:
+  domain.odontologo:
+    properties:
+      enrollment:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      surname:
+        type: string
+    type: object
+  domain.paciente:
+    properties:
+      DNI:
+        type: string
+      address:
+        type: string
+      discharge_date:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      surname:
+        type: string
+    type: object
+  domain.turno:
+    properties:
+      date:
+        type: string
+      odontologo_id:
+        type: integer
+      id:
+        type: integer
+      paciente_id:
+        type: integer
+      time:
+        type: string
+    type: object
+  web.Response:
+    properties:
+      data: {}
+    type: object
+info:
+  contact:
+    name: API Support
+    url: https://developers.ctd.com.ar/support
+  description: This API Handle Products.
+  title: Odontologo - Final
+  version: "1.0"
+paths:
+  /odontologos:
+    post:
+      consumes:
+      - application/json
+      description: create odontologo
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: odontologo to create
+        in: body
+        name: domain.odontologo
+        required: true
+        schema:
+          $ref: '#/definitions/domain.odontologo'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: odontologo successfully created
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "409":
+          description: 'error: the odontologo already exist'
+          schema:
+            $ref: '#/definitions/web.Response'
+        "422":
+          description: 'error: ¡incomplete fields!'
+          schema:
+            $ref: '#/definitions/web.Response'
+        "500":
+          description: error while saving
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Create odontologo
+      tags:
+      - odontologos
+  /odontologos/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete odontologo by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Delete odontologo by id
+      tags:
+      - odontologos
+    get:
+      consumes:
+      - application/json
+      description: get odontologo by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Get odontologo by ID
+      tags:
+      - odontologos
+    patch:
+      consumes:
+      - application/json
+      description: update odontologo
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: odontologo to update
+        in: body
+        name: domain.odontologo
+        required: true
+        schema:
+          $ref: '#/definitions/domain.odontologo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Update odontologo
+      tags:
+      - odontologos
+    put:
+      consumes:
+      - application/json
+      description: update all odontologo by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: odontologo to update
+        in: body
+        name: domain.odontologo
+        required: true
+        schema:
+          $ref: '#/definitions/domain.odontologo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Update all odontologo by id
+      tags:
+      - odontologos
+  /pacientes:
+    post:
+      consumes:
+      - application/json
+      description: create paciente
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: paciente to create
+        in: body
+        name: domain.paciente
+        required: true
+        schema:
+          $ref: '#/definitions/domain.paciente'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: paciente successfully created
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "409":
+          description: 'error: the paciente already exist'
+          schema:
+            $ref: '#/definitions/web.Response'
+        "422":
+          description: 'error: ¡incomplete fields!'
+          schema:
+            $ref: '#/definitions/web.Response'
+        "500":
+          description: error while saving
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Create paciente
+      tags:
+      - pacientes
+  /pacientes/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete paciente by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Delete paciente by id
+      tags:
+      - pacientes
+    get:
+      consumes:
+      - application/json
+      description: get paciente by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Get paciente by ID
+      tags:
+      - pacientes
+    patch:
+      consumes:
+      - application/json
+      description: update paciente
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: paciente to update
+        in: body
+        name: domain.paciente
+        required: true
+        schema:
+          $ref: '#/definitions/domain.paciente'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Update paciente
+      tags:
+      - pacientes
+  /turnos:
+    post:
+      consumes:
+      - application/json
+      description: create turno
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: turno to create
+        in: body
+        name: domain.turno
+        required: true
+        schema:
+          $ref: '#/definitions/domain.turno'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: turno successfully created
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "409":
+          description: 'error: the turno already exist'
+          schema:
+            $ref: '#/definitions/web.Response'
+        "422":
+          description: 'error: ¡incomplete fields!'
+          schema:
+            $ref: '#/definitions/web.Response'
+        "500":
+          description: error while saving
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Create turno
+      tags:
+      - turnos
+  /turnos/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete turno by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Delete turno by id
+      tags:
+      - turnos
+    get:
+      consumes:
+      - application/json
+      description: get turno by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Get turno by ID
+      tags:
+      - turnos
+    patch:
+      consumes:
+      - application/json
+      description: update turno
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: turno to update
+        in: body
+        name: domain.turno
+        required: true
+        schema:
+          $ref: '#/definitions/domain.turno'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Update turno
+      tags:
+      - turnos
+    put:
+      consumes:
+      - application/json
+      description: update all turno by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: turno to update
+        in: body
+        name: domain.turno
+        required: true
+        schema:
+          $ref: '#/definitions/domain.turno'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Update all turno by id
+      tags:
+      - turnos
+  /turnos/bydni:
+    get:
+      consumes:
+      - application/json
+      description: get turno by DNI paciente
+      parameters:
+      - description: dni
+        in: query
+        name: dni
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Get turno by DNI paciente
+      tags:
+      - turnos
+swagger: "2.0"
